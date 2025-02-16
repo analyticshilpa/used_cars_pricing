@@ -58,7 +58,7 @@ def main(args):
 
     # Compute and log accuracy score
     mse = mean_squared_error(y_test, yhat_test)
-    print(f'Mean Squared Error of Random Forest Regressor on test set: {accuracy:.2f}')
+    print(f'Mean Squared Error of Random Forest Regressor on test set: {mse:.2f}')
     # Logging the MSE score as a metric
     mlflow.log_metric("MSE", float(mse))
 
