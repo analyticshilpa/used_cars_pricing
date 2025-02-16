@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 import mlflow
-
+mlflow.start_run()
 def parse_args():
     '''Parse input arguments'''
 
@@ -31,9 +31,7 @@ def main(args):
     # Reading Data
     df = pd.read_csv(args.raw_data)
     
-    # Encoding the categorical 'Type' column
-    # Note: We should ideally use one-hot encoding here as there's no inherent order between the categories
-    # However, as we're using a decision tree model, label encoding also works here
+    # Encoding the categorical 'Segment' column
     label_encoder = LabelEncoder()
     df['Segment'] = label_encoder.fit_transform(df['Segment'])
 
@@ -51,7 +49,7 @@ def main(args):
     mlflow.log_metric('test size', test_df.shape[0])
     
 if __name__ == "__main__":
-    mlflow.start_run()
+    
 
     # Parse Arguments
     args = parse_args()
